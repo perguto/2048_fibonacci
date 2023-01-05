@@ -10,7 +10,7 @@
   <!-- main.css only has colors for fibonacci pieces -->
   <!-- ./style/main_copy_from_original.css has all the important style (i.e. mobile etc.) and must come afterwards -->
   <link href="style/main.css" rel="stylesheet" type="text/css">
-  <link href="style/main_copy_from_original.css" rel="stylesheet" type="text/css">
+  <link href="style/main_supplement.css" rel="stylesheet" type="text/css">
 
   <!-- <link rel="shortcut icon" href="favicon.ico"> -->
   <link rel="shortcut icon" href="2584.png">
@@ -95,10 +95,19 @@
 	</details>
 	<style>
 
-
+:root {
+	--text-color: #776e65;
+	--background-color: #faf8ef;
+}
 .expanded {
 	font-size: 90%;
-	color: #444;
+	    animation: kf-color-mix 1s -.9s linear forwards paused;
+	  color: currentColor;
+}
+@keyframes kf-color-mix {
+  /*0% { color: var(--background-color) }*/
+  0% { color: #fff }
+  100% { color: var(--text-color) }
 }
 	</style>
 
