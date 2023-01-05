@@ -84,15 +84,21 @@
 	<p>
 
 	<details id="swipe_sensitivity_explanation">
-
-		Number of pixels to swipe to move. Lower value = more sensitive
 		<summary style="/*display: flex;*/ /* somehow hides expand button */ /*justify-content: space-evenly;*/ /*doesn't work if display not flex etc. */ line-height: 2.5em /*max value compatible with input height*/;">
 			<span style="">
 				Swipe sensitivity: 
 				<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
 			</span>
-			<input id="sensitivity_slider" type="range" min="0" max="200" value="30" style="margin: 4px;margin-left: .5em; vertical-align: middle;">
-		</summary></details>
+			<input id="sensitivity_slider" type="range" min="0" max="200" value="30" style="margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;">
+		</summary>
+		<div class="expanded">Number of pixels to swipe to move. Lower value = more sensitive</div>
+	</details>
+	<style>
+.expanded {
+	font-size: 90%;
+	color: #444;
+}
+	</style>
 
 		<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
 		<!-- <script> -->
