@@ -81,6 +81,28 @@
     </div>
 
     <p class="game-explanation">
+	<p>
+	Swipe sensitivity: 
+	<!-- <span id="swipe_sensitivity_value_display" style="font-family: monospace;"> 30</span> -->
+	<code id="swipe_sensitivity_value_display" style="font-family: monospace;"> 30</code>
+
+	<input id="sensitivity_slider" type="range" min="0" max="200" value="30">
+	<!-- input::after doesn't update -->
+	<!-- <style> -->
+<!-- input::after { -->
+	<!-- content: attr(value); -->
+<!-- } -->
+	<!-- </style> -->
+	<script>
+		let sensitivity_slider=document.querySelector('#sensitivity_slider')
+		let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
+		sensitivity_slider.onchange = () => {
+			//debugger
+			swipe_sensitivity = +sensitivity_slider.value // <input> value is always string
+			swipe_sensitivity_value_display.innerText=swipe_sensitivity.toFixed(0).padStart(3,'0')
+		}
+	</script>
+	</p>
       <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong>, 
 <strong>WASD</strong>, <strong>HJKL</strong>
 	  or swipe to move the tiles. 

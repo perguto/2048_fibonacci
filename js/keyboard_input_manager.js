@@ -1,4 +1,5 @@
 let touch_active=1
+let swipe_sensitivity=30
 
 function KeyboardInputManager() {
   this.events = {};
@@ -123,7 +124,8 @@ KeyboardInputManager.prototype.listen = function () {
     var dy = touchEndClientY - touchStartClientY;
     var absDy = Math.abs(dy);
 
-    if (touch_active && Math.max(absDx, absDy) > 30) {
+	  // debugger
+    if (touch_active && Math.max(absDx, absDy) > swipe_sensitivity) {
       // (right : left) : (down : up)
 		touch_active=0
 		touchStartClientX = touchEndClientX
