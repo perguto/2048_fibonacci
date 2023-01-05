@@ -1,7 +1,7 @@
 {
   "name": "2584 - Fibonacci's 2048",
   "short_name": "2584",
-  "display": "standalone",
+  "display": "fullscreen",
   "start_url": "index.html",
   "icons": [
     {
