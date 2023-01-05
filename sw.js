@@ -1,8 +1,9 @@
-// HTML files: try the network first, then the cache. DEACTIVATED
-// Other files: try the cache first, then the network.
+// HTML files: try the network first, then the cache. <- force with webfirst = 1 
+// Other files: try the cache first, then the network.  <- force with webfirst = 0 
 // Both: cache a fresh version if possible.
 // (beware: the cache will grow and grow; there's no cleanup)
 
+const webfirst = 1
 const cacheName = 'files';
 
 addEventListener('fetch',  fetchEvent => {
@@ -17,7 +18,7 @@ addEventListener('fetch',  fetchEvent => {
       const myCache = await caches.open(cacheName);
       await myCache.put(request, responseCopy);
     }());
-    if (1 || request.headers.get('Accept').includes('text/html')) {
+    if (webfirst ?? request.headers.get('Accept').includes('text/html')) {
       try {
         return await responseFromFetch;
       }
