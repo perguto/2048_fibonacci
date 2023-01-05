@@ -36,7 +36,11 @@
 
     <div class="above-game">
       <p class="game-intro">Join the numbers and get to the <strong>2584 tile!</strong></p>
-	  <input type="button" value="Reload &amp; Update App" onclick="javascript:location.reload()">
+	  <!-- <input type="button" value="Reload &amp; Update App" onclick="javascript:location.reload()"> -->
+	  <a class="button" type="button" onclick="javascript:location.reload()">
+	  Reload &amp; Update App
+	  &#x21bb;
+	  </a>
       <a class="restart-button">New Game</a>
     </div>
 
@@ -105,6 +109,10 @@ input[type="range"]::-webkit-slider-runnable-track {
 	    border-radius: 0.5em;
 }
 
+a.button {
+	margin: 0.2em;
+}
+
 :root {
 	--text-color: #776e65;
 	--background-color: #faf8ef;
@@ -119,6 +127,10 @@ input[type="range"]::-webkit-slider-runnable-track {
   0% { color: #fff }
   100% { color: var(--text-color) }
 }
+			@media screen and (max-width: 520px) { .above-game {
+				flex-wrap: wrap;
+			}
+			}
 	</style>
 
 		<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
@@ -146,8 +158,8 @@ input[type="range"]::-webkit-slider-runnable-track {
 
 			let default_sens_slider = inv_scale_sens(default_sens)
 
-			let swipe_sensitivity = +localStorage?.swipe_sensitivity ?? default_sens
-			sensitivity_slider.value=+localStorage?.sensitivity_slider_value ?? inv_scale_sens(swipe_sensitivity)
+			let swipe_sensitivity = +(localStorage?.swipe_sensitivity ?? default_sens)
+			sensitivity_slider.value=+(localStorage?.sensitivity_slider_value ?? inv_scale_sens(swipe_sensitivity))
 				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
 
 			sensitivity_slider.oninput = () => {

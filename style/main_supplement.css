@@ -739,7 +739,7 @@ hr {
   display: inline-block;
 }
 
-.restart-button {
+.button,.restart-button {
   display: inline-block;
   background: #8f7a66;
   border-radius: 3px;
@@ -843,7 +843,7 @@ hr {
     box-sizing: border-box;
     line-height: 1.65;
   }
-  .restart-button {
+.button,  .restart-button {
     padding: 0 8px;
     height: 32px;
     line-height: 35px;
