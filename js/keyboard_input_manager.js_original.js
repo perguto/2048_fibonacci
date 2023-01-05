@@ -94,13 +94,13 @@ KeyboardInputManager.prototype.listen = function () {
     event.preventDefault();
   });
 
-  // gameContainer.addEventListener(this.eventTouchmove, function (event) {
-  //   event.preventDefault();
-  // });
-
   gameContainer.addEventListener(this.eventTouchmove, function (event) {
-    if ((!window.navigator.msPointerEnabled && event.touches.length > 1) ||
-        event.targetTouches.length > 1) {
+    event.preventDefault();
+  });
+
+  gameContainer.addEventListener(this.eventTouchend, function (event) {
+    if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
+        event.targetTouches.length > 0) {
       return; // Ignore if still touching with one or more fingers
     }
 
@@ -122,42 +122,10 @@ KeyboardInputManager.prototype.listen = function () {
 
     if (Math.max(absDx, absDy) > 10) {
       // (right : left) : (down : up)
-		touchStartClientX = touchEndClientX
-		touchStartClientY = touchEndClientY
       self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
     }
   });
-
-  // gameContainer.addEventListener(this.eventTouchend, function (event) {
-  //   if ((!window.navigator.msPointerEnabled && event.touches.length > 0) ||
-  //       event.targetTouches.length > 0) {
-  //     return; // Ignore if still touching with one or more fingers
-  //   }
-
-  //   var touchEndClientX, touchEndClientY;
-
-  //   if (window.navigator.msPointerEnabled) {
-  //     touchEndClientX = event.pageX;
-  //     touchEndClientY = event.pageY;
-  //   } else {
-  //     touchEndClientX = event.changedTouches[0].clientX;
-  //     touchEndClientY = event.changedTouches[0].clientY;
-  //   }
-
-  //   var dx = touchEndClientX - touchStartClientX;
-  //   var absDx = Math.abs(dx);
-
-  //   var dy = touchEndClientY - touchStartClientY;
-  //   var absDy = Math.abs(dy);
-
-  //   if (Math.max(absDx, absDy) > 10) {
-  //     // (right : left) : (down : up)
-  //     self.emit("move", absDx > absDy ? (dx > 0 ? 1 : 3) : (dy > 0 ? 2 : 0));
-  //   }
-  // });
-	
 };
-
 
 KeyboardInputManager.prototype.restart = function (event) {
   event.preventDefault();
