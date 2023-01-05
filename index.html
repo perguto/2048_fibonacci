@@ -80,54 +80,62 @@
       </div>
     </div>
 
-    <p class="game-explanation">
+	<p class="game-explanation">
 	<p>
 
-	<details id="swipe_sensitivity_explanation">Number of pixels to swipe to move. Lower value = more sensitive<summary>Swipe sensitivity</summary></details>:
+	<details id="swipe_sensitivity_explanation">
 
-	<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
-	<!-- <script> -->
-	<!-- 	let swipe_sensitivity_explanation = document.querySelector('abbr#swipe_sensitivity_explanation') -->
-	<!-- 	swipe_sensitivity_explanation.on -->
-	<!-- </script> -->
-	<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
+		Number of pixels to swipe to move. Lower value = more sensitive
+		<summary style="/*display: flex;*/ /* somehow hides expand button */ justify-content: space-evenly;">
+			<span style="">
+				Swipe sensitivity: 
+				<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
+			</span>
+			<input id="sensitivity_slider" type="range" min="0" max="200" value="30" style="margin-left: .5em; vertical-align: middle;">
+		</summary></details>
 
-	<input id="sensitivity_slider" type="range" min="0" max="200" value="30">
-	<!-- input::after doesn't update -->
-	<!-- <style> -->
+		<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
+		<!-- <script> -->
+			<!-- 	let swipe_sensitivity_explanation = document.querySelector('abbr#swipe_sensitivity_explanation') -->
+				<!-- 	swipe_sensitivity_explanation.on -->
+				<!-- </script> -->
+		<!-- <span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span> -->
+		<!-- <input id="sensitivity_slider" type="range" min="0" max="200" value="30"> -->
+		<!-- input::after doesn't update -->
+		<!-- <style> -->
 <!-- input::after { -->
 	<!-- content: attr(value); -->
-<!-- } -->
+	<!-- } -->
 	<!-- </style> -->
-	<script>
-		let sensitivity_slider=document.querySelector('#sensitivity_slider')
-		let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
-		let exponent=2
-		let sens_max=200
-		let sens_min = 1
-		let scale_sens = value => sens_min+(value/sens_max)**exponent * (sens_max - sens_min )
-		sensitivity_slider.onchange = () => {
-			//debugger
-			swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
-			swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
-		}
-	</script>
+		<script>
+			let sensitivity_slider=document.querySelector('#sensitivity_slider')
+			let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
+			let exponent= 1.5
+			let sens_max=200
+			let sens_min = 1
+			let scale_sens = value => sens_min+(value/sens_max)**exponent * (sens_max - sens_min )
+			sensitivity_slider.onchange = () => {
+				//debugger
+				swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
+				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+			}
+		</script>
 	</p>
-      <strong class="important">How to play:</strong> Use your <strong>arrow keys</strong>, 
-<strong>WASD</strong>, <strong>HJKL</strong>
-	  or swipe to move the tiles. 
-	  <!-- When two tiles with the same number touch, they <strong>merge into one!</strong> -->
-	  When two neighboring Fibonacci numbers touch, they <strong>add up</strong> and gibe <strong>the next Fibonacci number!</strong>
-    </p>
-    <!-- <hr> -->
-    <!-- <p> -->
-    <!-- <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution. -->
-    <!-- </p> -->
-    <hr>
-    <p>
-2584 by <a href="https://perguto.github.io" target="_blank">perguto.</a>
-    2048 created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
-    </p>
+	<strong class="important">How to play:</strong> Use your <strong>arrow keys</strong>, 
+	<strong>WASD</strong>, <strong>HJKL</strong>
+	or swipe to move the tiles. 
+	<!-- When two tiles with the same number touch, they <strong>merge into one!</strong> -->
+	When two neighboring Fibonacci numbers touch, they <strong>add up</strong> and gibe <strong>the next Fibonacci number!</strong>
+	</p>
+	<!-- <hr> -->
+	<!-- <p> -->
+	<!-- <strong class="important">Note:</strong> This site is the official version of 2048. You can play it on your phone via <a href="http://git.io/2048">http://git.io/2048.</a> All other apps or sites are derivatives or fakes, and should be used with caution. -->
+	<!-- </p> -->
+	<hr>
+	<p>
+	2584 by <a href="https://perguto.github.io" target="_blank">perguto.</a>
+	2048 created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
+	</p>
   </div>
 
   <script>
