@@ -17,7 +17,7 @@ addEventListener('fetch',  fetchEvent => {
       const myCache = await caches.open(cacheName);
       await myCache.put(request, responseCopy);
     }());
-    if (0 && request.headers.get('Accept').includes('text/html')) {
+    if (1 || request.headers.get('Accept').includes('text/html')) {
       try {
         return await responseFromFetch;
       }
