@@ -82,9 +82,9 @@
 
     <p class="game-explanation">
 	<p>
-	Swipe sensitivity: 
+	<abbr title="Number of pixels to swipe to move; lower value = more sensitive">Swipe sensitivity: </abbr>
 	<!-- <span id="swipe_sensitivity_value_display" style="font-family: monospace;"> 30</span> -->
-	<code id="swipe_sensitivity_value_display" style="font-family: monospace;"> 30</code>
+	<code id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;"> 30</code>
 
 	<input id="sensitivity_slider" type="range" min="0" max="200" value="30">
 	<!-- input::after doesn't update -->
@@ -96,10 +96,13 @@
 	<script>
 		let sensitivity_slider=document.querySelector('#sensitivity_slider')
 		let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
+		let exponent=2
+		let sens_max=200
+		let scale_sens = value => (value/sens_max)**exponent * sens_max
 		sensitivity_slider.onchange = () => {
 			//debugger
-			swipe_sensitivity = +sensitivity_slider.value // <input> value is always string
-			swipe_sensitivity_value_display.innerText=swipe_sensitivity.toFixed(0).padStart(3,'0')
+			swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
+			swipe_sensitivity_value_display.innerText=swipe_sensitivity.toFixed(3).padStart(6,' ')
 		}
 	</script>
 	</p>
