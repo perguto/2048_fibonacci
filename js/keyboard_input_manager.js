@@ -1,5 +1,5 @@
 let touch_active=1
-let swipe_sensitivity=30
+swipe_sensitivity??=30
 
 function KeyboardInputManager() {
   this.events = {};

@@ -36,8 +36,8 @@
 
     <div class="above-game">
       <p class="game-intro">Join the numbers and get to the <strong>2584 tile!</strong></p>
-      <a class="restart-button">New Game</a>
 	  <input type="button" value="Reload &amp; Update App" onclick="javascript:location.reload()">
+      <a class="restart-button">New Game</a>
     </div>
 
     <div class="game-container">
@@ -90,11 +90,20 @@
 				Swipe sensitivity: 
 				<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
 			</span>
-			<input id="sensitivity_slider" type="range" min="0" max="200" value="30" style="margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;">
+			<input id="sensitivity_slider" type="range" min="0" max="1" value="0.3" step="0.01" style="margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;">
 		</summary>
 		<div class="expanded">Number of pixels to swipe to move. Lower value = more sensitive</div>
 	</details>
 	<style>
+input[type="range"] {
+	accent-color: #3d81fb;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+	background-color: none;
+	/*height: 1em;*/
+	  /*border: 1px solid #b2b2b2;*/
+	    border-radius: 0.5em;
+}
 
 :root {
 	--text-color: #776e65;
@@ -126,16 +135,30 @@
 	<!-- } -->
 	<!-- </style> -->
 		<script>
+			let default_sens=30
 			let sensitivity_slider=document.querySelector('#sensitivity_slider')
 			let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
 			let exponent= 1.5
 			let sens_max=200
 			let sens_min = 1
-			let scale_sens = value => sens_min+(value/sens_max)**exponent * (sens_max - sens_min )
-			sensitivity_slider.onchange = () => {
-				//debugger
+			let scale_sens = value => sens_min+value**exponent * (sens_max - sens_min )
+			let inv_scale_sens = sens => ((sens - sens_min)/(sens_max - sens_min))**(1/exponent)
+
+			let default_sens_slider = inv_scale_sens(default_sens)
+
+			let swipe_sensitivity = +localStorage?.swipe_sensitivity ?? default_sens
+			sensitivity_slider.value=+localStorage?.sensitivity_slider_value ?? inv_scale_sens(swipe_sensitivity)
+				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+
+			sensitivity_slider.oninput = () => {
 				swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
 				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+			}
+
+			sensitivity_slider.onchange = () => {
+				//debugger
+				localStorage.swipe_sensitivity=swipe_sensitivity
+				localStorage.sensitivity_slider_value=sensitivity_slider.value
 			}
 		</script>
 	</p>
