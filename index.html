@@ -104,12 +104,12 @@
 		<div class="expanded">Number of pixels to swipe to move. Lower value = more sensitive</div>
 	</details>
 
-	<details id="pull_through_explanation">
+	<details id="chain_moves_explanation">
 		<summary style="line-height: 2.5em">
 			<span style="">
 				Multiple moves per swipe: 
 			</span>
-			<input id="sensitivity_slider" type="checkbox" style="/* margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;*/">
+			<input id="chain_moves_checkbox" type="checkbox" style="/* margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;*/">
 		</summary>
 		<div class="expanded">Allow multiple moves with one swipe</div>
 	</details>
@@ -162,11 +162,18 @@ a.button {
 	<!-- } -->
 	<!-- </style> -->
 		<script>
-			let default_sens=30
-			let sensitivity_slider=document.querySelector('#sensitivity_slider')
+			let chain_moves = Boolean(localStorage?.chain_moves ?? 0)
+			let chain_moves_checkbox = document.querySelector('#chain_moves_checkbox')
+			chain_moves_checkbox.checked =chain_moves
+			chain_moves_checkbox.onchange = () => {
+				chain_moves =chain_moves_checkbox.checked
+				localStorage.chain_moves = chain_moves
+			}
+			let default_sens = 30
+			let sensitivity_slider = document.querySelector('#sensitivity_slider')
 			let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
-			let exponent= 1.5
-			let sens_max=200
+			let exponent = 1.5
+			let sens_max = 200
 			let sens_min = 1
 			let scale_sens = value => sens_min+value**exponent * (sens_max - sens_min )
 			let inv_scale_sens = sens => ((sens - sens_min)/(sens_max - sens_min))**(1/exponent)

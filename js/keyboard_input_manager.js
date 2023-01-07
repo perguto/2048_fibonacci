@@ -125,7 +125,7 @@ KeyboardInputManager.prototype.listen = function () {
     var absDy = Math.abs(dy);
 
 	  // debugger
-    if (touch_active && Math.max(absDx, absDy) > swipe_sensitivity) {
+    if ((chain_moves || touch_active )&& Math.max(absDx, absDy) > swipe_sensitivity) {
       // (right : left) : (down : up)
 		touch_active=0
 		touchStartClientX = touchEndClientX
