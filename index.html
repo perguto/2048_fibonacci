@@ -113,6 +113,21 @@
 		</summary>
 		<div class="expanded">Allow multiple moves with one swipe</div>
 	</details>
+	<details id="game_mode_explanation">
+		<summary>
+			Game mode:
+			<input type="radio" id="game_mode_normal" name="game_mode" value="normal"><label>Normal (2048)</label>
+			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="fibonacci" checked><label>Fibonacci (2584)</label>
+			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="stupid" checked><label>Stupid (Anything goes)</label>
+		</summary>
+		<div class="expanded">
+			<strong>Normal: </strong>
+			Same numbers add up, i.e. 1 + 1 = 2, 2 + 2 = 4, 4 + 4 = 8, 8 + 8 =16, ...
+			<br>
+			<strong>Fibonacci: </strong>
+			Consecutive Fibonacci numbers add up, i.e. 1 + 1 =2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8, ...
+
+	</details>
 	<style>
 input[type="range"] {
 	accent-color: #3d81fb;
@@ -120,8 +135,8 @@ input[type="range"] {
 input[type="range"]::-webkit-slider-runnable-track {
 	background-color: none;
 	/*height: 1em;*/
-	  /*border: 1px solid #b2b2b2;*/
-	    border-radius: 0.5em;
+	/*border: 1px solid #b2b2b2;*/
+	border-radius: 0.5em;
 }
 
 a.button {
@@ -134,67 +149,105 @@ a.button {
 }
 .expanded {
 	font-size: 90%;
-	    animation: kf-color-mix 1s -.9s linear forwards paused;
-	  color: currentColor;
+	animation: kf-color-mix 1s -.9s linear forwards paused;
+	color: currentColor;
 }
-@keyframes kf-color-mix {
-  /*0% { color: var(--background-color) }*/
-  0% { color: #fff }
-  100% { color: var(--text-color) }
-}
-			@media screen and (max-width: 520px) { .above-game {
-				flex-wrap: wrap;
-			}
-			}
+  @keyframes kf-color-mix {
+	  /*0% { color: var(--background-color) }*/
+	  0% { color: #fff }
+	  100% { color: var(--text-color) }
+	  }
+  @media screen and (max-width: 520px) { .above-game {
+		  flex-wrap: wrap;
+  }
+  }
 	</style>
 
-		<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
-		<!-- <script> -->
-			<!-- 	let swipe_sensitivity_explanation = document.querySelector('abbr#swipe_sensitivity_explanation') -->
-				<!-- 	swipe_sensitivity_explanation.on -->
-				<!-- </script> -->
-		<!-- <span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span> -->
-		<!-- <input id="sensitivity_slider" type="range" min="0" max="200" value="30"> -->
-		<!-- input::after doesn't update -->
-		<!-- <style> -->
+	<!-- <abbr id="swipe_sensitivity_explanation" title="Number of pixels to swipe to move. Lower value = more sensitive">Swipe sensitivity</abbr>: -->
+	<!-- <script> -->
+		<!-- 	let swipe_sensitivity_explanation = document.querySelector('abbr#swipe_sensitivity_explanation') -->
+			<!-- 	swipe_sensitivity_explanation.on -->
+			<!-- </script> -->
+	<!-- <span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span> -->
+	<!-- <input id="sensitivity_slider" type="range" min="0" max="200" value="30"> -->
+	<!-- input::after doesn't update -->
+	<!-- <style> -->
 <!-- input::after { -->
 	<!-- content: attr(value); -->
 	<!-- } -->
 	<!-- </style> -->
-		<script>
-			let chain_moves = Boolean(localStorage?.chain_moves ?? 0)
-			let chain_moves_checkbox = document.querySelector('#chain_moves_checkbox')
-			chain_moves_checkbox.checked =chain_moves
-			chain_moves_checkbox.onchange = () => {
-				chain_moves =chain_moves_checkbox.checked
-				localStorage.chain_moves = chain_moves
-			}
-			let default_sens = 30
-			let sensitivity_slider = document.querySelector('#sensitivity_slider')
-			let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
-			let exponent = 1.5
-			let sens_max = 200
-			let sens_min = 1
-			let scale_sens = value => sens_min+value**exponent * (sens_max - sens_min )
-			let inv_scale_sens = sens => ((sens - sens_min)/(sens_max - sens_min))**(1/exponent)
+	<script>
+		let GAMETABLE = {
+			'normal':0,
+			'fibonacci':1,
+		}
 
-			let default_sens_slider = inv_scale_sens(default_sens)
+		let game_mode = localStorage.game_mode??'fibonacci'
+		 document.querySelector('input[type="radio"][name="game_mode"][value="'+game_mode+'"]').checked=true
 
-			let swipe_sensitivity = +(localStorage?.swipe_sensitivity ?? default_sens)
-			sensitivity_slider.value=+(localStorage?.sensitivity_slider_value ?? inv_scale_sens(swipe_sensitivity))
-				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+let GAMEMODE = GAMETABLE[game_mode];
+		let game_mode_buttons = document.querySelectorAll('input[type="radio"][name="game_mode"]')
+		function update_game_mode() {
+			//debugger
+			game_mode = document.querySelector('input[type="radio"][name="game_mode"]:checked').value
+			GAMEMODE = (game_mode=='fibonacci')?1:0
+			localStorage.game_mode=game_mode
+			update_title()
+		}
 
-			sensitivity_slider.oninput = () => {
-				swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
-				swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
-			}
 
-			sensitivity_slider.onchange = () => {
-				//debugger
-				localStorage.swipe_sensitivity=swipe_sensitivity
-				localStorage.sensitivity_slider_value=sensitivity_slider.value
-			}
-		</script>
+		function update_title() {
+if(
+	game_mode == 'fibonacci'
+){
+	document.querySelector('.title').innerText=fib(18);
+}
+
+
+		}
+
+		for (let game_mode_button of game_mode_buttons){
+			game_mode_button.addEventListener('change',
+				update_game_mode
+			)
+
+		}
+
+		let chain_moves = Boolean(localStorage?.chain_moves ?? 0)
+		let chain_moves_checkbox = document.querySelector('#chain_moves_checkbox')
+		chain_moves_checkbox.checked =chain_moves
+		chain_moves_checkbox.onchange = () => {
+			chain_moves =chain_moves_checkbox.checked
+			localStorage.chain_moves = chain_moves
+		}
+
+
+		let default_sens = 30
+		let sensitivity_slider = document.querySelector('#sensitivity_slider')
+		let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
+		let exponent = 2
+		let sens_max = 200
+		let sens_min = 1
+		let scale_sens = value => sens_min+value**exponent * (sens_max - sens_min )
+		let inv_scale_sens = sens => ((sens - sens_min)/(sens_max - sens_min))**(1/exponent)
+
+		let default_sens_slider = inv_scale_sens(default_sens)
+
+		let swipe_sensitivity = +(localStorage?.swipe_sensitivity ?? default_sens)
+		sensitivity_slider.value=+(localStorage?.sensitivity_slider_value ?? inv_scale_sens(swipe_sensitivity))
+		swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+
+		sensitivity_slider.oninput = () => {
+			swipe_sensitivity = scale_sens( +sensitivity_slider.value) // <input> value is always string
+			swipe_sensitivity_value_display.innerText=swipe_sensitivity.toPrecision(3).padStart(4,' ')
+		}
+
+		sensitivity_slider.onchange = () => {
+			//debugger
+			localStorage.swipe_sensitivity=swipe_sensitivity
+			localStorage.sensitivity_slider_value=sensitivity_slider.value
+		}
+	</script>
 	</p>
 	<strong class="important">How to play:</strong> Use your <strong>arrow keys</strong>, 
 	<strong>WASD</strong>, <strong>HJKL</strong>
@@ -211,21 +264,21 @@ a.button {
 	2584 by <a href="https://perguto.github.io" target="_blank">perguto.</a>
 	2048 created by <a href="http://gabrielecirulli.com" target="_blank">Gabriele Cirulli.</a> Based on <a href="https://itunes.apple.com/us/app/1024!/id823499224" target="_blank">1024 by Veewo Studio</a> and conceptually similar to <a href="http://asherv.com/threes/" target="_blank">Threes by Asher Vollmer.</a>
 	</p>
-  </div>
+		</div>
 
-  <script>
-	  navigator.serviceWorker.register('sw.js')
-  </script>
+		<script>
+			navigator.serviceWorker.register('sw.js')
+		</script>
 
-  <script src="js/bind_polyfill.js"></script>
-  <script src="js/classlist_polyfill.js"></script>
-  <script src="js/animframe_polyfill.js"></script>
-  <script src="js/keyboard_input_manager.js"></script>
-  <script src="js/html_actuator.js"></script>
-  <script src="js/grid.js"></script>
-  <script src="js/tile.js"></script>
-  <script src="js/local_storage_manager.js"></script>
-  <script src="js/game_manager.js"></script>
-  <script src="js/application.js"></script>
+		<script src="js/bind_polyfill.js"></script>
+		<script src="js/classlist_polyfill.js"></script>
+		<script src="js/animframe_polyfill.js"></script>
+		<script src="js/keyboard_input_manager.js"></script>
+		<script src="js/html_actuator.js"></script>
+		<script src="js/grid.js"></script>
+		<script src="js/tile.js"></script>
+		<script src="js/local_storage_manager.js"></script>
+		<script src="js/game_manager.js"></script>
+		<script src="js/application.js"></script>
 </body>
 </html>
