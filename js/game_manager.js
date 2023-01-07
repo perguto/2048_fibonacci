@@ -1,7 +1,15 @@
 var phi=(5**.5+1)/2;
+let max = Math.max
+let min = Math.min
+let unordered_ratio_between = (a,b,m,M) => ((a*m) <= b )&& (b <= (a*M))
+let ordered_ratio_between = (a,b,m,M) => unordered_ratio_between(Math.min(a,b),Math.max(a,b),m,M)
 var fib = n => Math.round(phi**n/5**.5);
+// let tribcache=Array(100)
+let tribcache=[1,1,1]
+function trib(){}
+trib = n => n<3?1n:tribcache[n]??(tribcache[n]=trib(n-1)+trib(n-3))
 //0 : normal, 1 : fibonacci
-		update_title()
+update_title()
 //var mergeable = (a,b) => 
 //	(GAMEMODE == 0)?
 //	a==b	//ordinary 2048
@@ -12,6 +20,7 @@ var fib = n => Math.round(phi**n/5**.5);
 var mergeable = (a,b) => 
 
 {
+	[a,b]=[Math.min(a,b),Math.max(a,b)]
 	switch (game_mode){
 		case 'fibonacci':
 			return (a==b&&b==1)||a!=b&&a<=2*b&&b<=2*a; //proper fibonacci with modified 1 and 2 start tiles
@@ -23,6 +32,8 @@ var mergeable = (a,b) =>
 			return true
 		case 'stuck':
 			return false
+		case 'tribonacci':
+			return (a==1&&b==a)||(a==1&&b==3)||ordered_ratio_between(a,b,2,2.5)
 	}
 }
 
