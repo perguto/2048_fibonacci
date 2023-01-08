@@ -34,6 +34,8 @@ var mergeable = (a,b) =>
 			return false
 		case 'tribonacci':
 			return (a==1&&b==a)||(a==1&&b==3)||ordered_ratio_between(a,b,2,2.5)
+		case 'powers_of_3':
+			return ((a%2)==1)&&(b==a||b==2*a)
 	}
 }
 
