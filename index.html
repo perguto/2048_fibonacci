@@ -1,5 +1,9 @@
 <!DOCTYPE html>
-<html style="overflow: hidden;">
+<html style="
+			 /*
+			 overflow: hidden;
+			 */
+	">
 <head>
 
     <link rel="manifest" href="manifest.json" />
@@ -120,7 +124,10 @@
 			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="fibonacci" checked><label>Fibonacci (2584)</label>
 			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="stupid" checked><label>Stupid (Anything goes)</label>
 			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="tribonacci" checked><label>Tribonacci</label>
+			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="custom_sequence" checked><label>Custom Sequence</label>
 			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="powers_of_3" checked><label>Powers of 3</label>
+			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="powers_of_4" checked><label>Powers of 4</label>
+			<input type="radio" id="game_mode_fibonacci" name="game_mode" value="powers_of_5" checked><label>Powers of 5</label>
 		</summary>
 		<div class="expanded">
 			<strong>Normal: </strong>
@@ -128,6 +135,7 @@
 			<br>
 			<strong>Fibonacci: </strong>
 			Consecutive Fibonacci numbers add up, i.e. 1 + 1 =2, 1 + 2 = 3, 2 + 3 = 5, 3 + 5 = 8, ...
+			<br>
 			<strong>Tribonacci: </strong>
 			<!-- The tribonacci sequence is defined by the recusion a~n~ = a~n-1~ + a~n-3~, and therefore goes 1, 1, 1, 2, 3, 4, 6, 9, 13, 19, 28, 41, 60, 88, 129, ... -->
 			The tribonacci sequence is defined by the recusion a<sub>n</sub> =
@@ -135,9 +143,11 @@
 			6, 9, 13, 19, 28, 41, 60, 88, 129, …
 			<br>
 			You can add up to numbers if they are two places apart in this sequence ((1,3) or the larger number twice to 2.5 times as big as the smaller one).
-			<details><summary>Explicit formula:</summary><div class="expanded">
-				$$\left(\frac{1}{186} \, {\left({\left(\left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(i \, \sqrt{3} + 1\right)} + \frac{2 \, \left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(-i \, \sqrt{3} + 1\right)}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} - 2\right)}^{2} + 2 \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(i \, \sqrt{3} + 1\right)} + \frac{4 \, \left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(-i \, \sqrt{3} + 1\right)}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + 50\right)} {\left(-\frac{1}{6} \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(i \, \sqrt{3} + 1\right)} - \frac{\left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(-i \, \sqrt{3} + 1\right)}}{3 \, {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + \frac{1}{3}\right)}^{m} + \frac{1}{186} \, {\left({\left(\left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(-i \, \sqrt{3} + 1\right)} + \frac{2 \, \left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(i \, \sqrt{3} + 1\right)}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} - 2\right)}^{2} + 2 \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(-i \, \sqrt{3} + 1\right)} + \frac{4 \, \left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(i \, \sqrt{3} + 1\right)}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + 50\right)} {\left(-\frac{1}{6} \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} {\left(-i \, \sqrt{3} + 1\right)} - \frac{\left(\frac{1}{2}\right)^{\frac{2}{3}} {\left(i \, \sqrt{3} + 1\right)}}{3 \, {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + \frac{1}{3}\right)}^{m} + \frac{1}{93} \, {\left(2 \, {\left(\left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} + \frac{2 \, \left(\frac{1}{2}\right)^{\frac{2}{3}}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + 1\right)}^{2} - 2 \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} - \frac{4 \, \left(\frac{1}{2}\right)^{\frac{2}{3}}}{{\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + 25\right)} {\left(\frac{1}{3} \, \left(\frac{1}{2}\right)^{\frac{1}{3}} {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}} + \frac{2 \, \left(\frac{1}{2}\right)^{\frac{2}{3}}}{3 \, {\left(3 \, \sqrt{31} \sqrt{3} + 29\right)}^{\frac{1}{3}}} + \frac{1}{3}\right)}^{m}\right)$$</div></details>
-	</details>
+					Explicit formula
+<a href="./tribonacci.md.html">here</a>.
+			<br>
+			<strong>Custom Sequence:</strong>Change the value of the array
+<code>custom_sequence</code> in the devtools console (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> +<kbd>J</kbd>)
 	<style>
 input[type="range"] {
 	accent-color: #3d81fb;

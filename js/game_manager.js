@@ -16,11 +16,14 @@ update_title()
 //:
 ////	(a==b&&b==2)||a!=b&&a<=2*b&&b<=2*a; //fibonacci like
 //	(a==b&&b==1)||a!=b&&a<=2*b&&b<=2*a; //proper fibonacci with modified 1 and 2 start tiles
-
+let custom_sequence = 
+[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912]
+	// [2**i for i in range(30)]
 var mergeable = (a,b) => 
 
 {
 	[a,b]=[Math.min(a,b),Math.max(a,b)]
+	let n
 	switch (game_mode){
 		case 'fibonacci':
 			return (a==b&&b==1)||a!=b&&a<=2*b&&b<=2*a; //proper fibonacci with modified 1 and 2 start tiles
@@ -34,9 +37,20 @@ var mergeable = (a,b) =>
 			return false
 		case 'tribonacci':
 			return (a==1&&b==a)||(a==1&&b==3)||ordered_ratio_between(a,b,2,2.5)
+		case 'custom_sequence':
+			return custom_sequence.includes(a+b)
 		case 'powers_of_3':
-			return ((a%2)==1)&&(b==a||b==2*a)
+			n=3
+			// return ((a%2)==1)&&(b==a||b==2*a)
+		case 'powers_of_4':
+			n=4
+			// return (a + b <= 4) || (a%4==0 && b%4 == 0 && mergeable(a/4,b/4))
+		case 'powers_of_5':
+			n=5
+			// return (a + b <= 5) || (a%5==0 && b%5 == 0 && mergeable(a/5,b/5))
+			
 	}
+	return (a + b <= n) || (a%n==0 && b%n == 0 && mergeable(a/n,b/n))
 }
 
 function GameManager(size, InputManager, Actuator, StorageManager) {
