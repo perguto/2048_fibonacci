@@ -109,13 +109,22 @@
 	</details>
 
 	<details id="chain_moves_explanation">
-		<summary style="line-height: 2.5em">
+		<summary style="/*line-height: 2.5em*/">
 			<span style="">
 				Multiple moves per swipe: 
 			</span>
 			<input id="chain_moves_checkbox" type="checkbox" style="/* margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;*/">
 		</summary>
 		<div class="expanded">Allow multiple moves with one swipe</div>
+	</details>
+	<details id="vibration_explanation">
+		<summary style="line-height: 2.5em">
+			<span style="">
+				Vibration: 
+			</span>
+			<input id="vibration_checkbox" type="checkbox">
+		</summary>
+		<div class="expanded">Vibration for smartphone/tablet</div>
 	</details>
 	<details id="game_mode_explanation">
 		<summary>
@@ -244,6 +253,13 @@ let GAMEMODE = GAMETABLE[game_mode];
 			localStorage.chain_moves = chain_moves
 		}
 
+		let vibration = Boolean(localStorage?.vibration ?? 0)
+		let vibration_checkbox = document.querySelector('#vibration_checkbox')
+		vibration_checkbox.checked =vibration
+		vibration_checkbox.onchange = () => {
+			vibration =vibration_checkbox.checked
+			localStorage.vibration = vibration
+		}
 
 		let default_sens = 30
 		let sensitivity_slider = document.querySelector('#sensitivity_slider')
