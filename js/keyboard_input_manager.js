@@ -91,14 +91,14 @@ KeyboardInputManager.prototype.listen = function () {
 	})
 
 	let axis_map = {
-		'0+':1,
-		'0-':3,
-		'1+':2,
-		'1-':0,
-		'2+':1,
-		'2-':3,
-		'3+':2,
-		'3-':0,
+		'0+':1, //L right
+		'0-':3, //L left
+		'1+':2, //L down
+		'1-':0, //L up
+		'2+':1, //R right
+		'2-':3, //R left
+		'3+':2, //R down
+		'3-':0, //R up
 	}
 	// Respond to gamepad buttons
 	document.addEventListener('axis_tilt',event => {

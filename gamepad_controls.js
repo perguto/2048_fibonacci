@@ -24,11 +24,21 @@
 // gamepad.on('press','button_21',console.log)
 // gamepad.on('press','button_22',console.log)
 // })
+window.addEventListener("gamepadconnected", (e) => {
+  console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+    e.gamepad.index, e.gamepad.id,
+    e.gamepad.buttons.length, e.gamepad.axes.length);
+});
+window.addEventListener("gamepaddisconnected", (e) => {
+  console.log("Gamepad disconnected from index %d: %s",
+    e.gamepad.index, e.gamepad.id);
+});
 
 setInterval(handleGamepads,10)
 
 let deadzone = 0.6
 let resetzone = 0.2
+let gamepad_activated = [true,true,true,true]
 let axis_active =[[],[],[],[]]
 
 //let lastPressed =[]
@@ -37,7 +47,7 @@ let last_gamepads = gamepads
 function handleGamepads(){
 	gamepads = navigator.getGamepads()
 	for(let i=0;i<4;i++){
-		if(gamepads[i]){
+		if(gamepads[i]&&gamepad_activated[i]){
 			for(let j=0;j< gamepads[i]?.buttons.length??0;j++){
 				if(
 					gamepads[i].buttons[j].touched 
@@ -46,6 +56,9 @@ function handleGamepads(){
 				){
 					// debugger
 					let e = new Event('press')
+					// debugger
+					// gamepads[i].vibrationActuator.playEffect("dual-rumble",{duration:200,startDelay:0,strongMagnitude:1,weakMagnitude:1})
+					gamepads[0].vibrationActuator.playEffect("dual-rumble",{duration:100,startDelay:0,strongMagnitude:.5,weakMagnitude:.5})
 					e.button=j
 					document.dispatchEvent(e)
 				}
@@ -59,6 +72,12 @@ function handleGamepads(){
 					e.axis=j
 					e.sign= Math.sign(gamepads[i].axes[j])
 					document.dispatchEvent(e)
+					gamepads[i].vibrationActuator.playEffect('dual-rumble', {
+						startDelay: 0,
+						duration: 100,
+						weakMagnitude: 0.5,
+						strongMagnitude: 0.5,
+					});
 				} else 
 					if(Math.abs(gamepads[i]?.axes[j])<deadzone && !(axis_active[i][j]??false)){
 						axis_active[i][j]=true
