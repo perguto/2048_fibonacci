@@ -208,6 +208,12 @@ a.button {
 	<!-- } -->
 	<!-- </style> -->
 	<script>
+		window.onbeforeunload = e => {
+			e.preventDefault()
+			return e.returnValue="NOOO!"
+		}
+
+
 		let GAMETABLE = {
 			'normal':0,
 			'fibonacci':1,
