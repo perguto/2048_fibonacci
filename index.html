@@ -98,7 +98,10 @@
 	<p>
 
 	<details id="swipe_sensitivity_explanation">
-		<summary style="/*display: flex;*/ /* somehow hides expand button */ /*justify-content: space-evenly;*/ /*doesn't work if display not flex etc. */ line-height: 2.5em /*max value compatible with input height*/;">
+		<summary style="
+			/*display: flex;*/ /* somehow hides expand button */ /*justify-content: space-evenly;*/ /*doesn't work if display not flex etc. */ 
+			line-height: 2.5em /*max value compatible with input height*/;
+			">
 			<span style="">
 				Swipe sensitivity: 
 				<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
@@ -118,13 +121,20 @@
 		<div class="expanded">Allow multiple moves with one swipe</div>
 	</details>
 	<details id="vibration_explanation">
-		<summary style="line-height: 2.5em">
-			<span style="">
+		<summary>
+			<span>
 				Vibration: 
 			</span>
 			<input id="vibration_checkbox" type="checkbox">
 		</summary>
 		<div class="expanded">Vibration for smartphone/tablet</div>
+	</details>
+	<details id="rumble_activated_explanation">
+		<summary>
+			<span>Rumble: </span>
+			<input id="rumble_activated_checkbox" type="checkbox">
+		</summary>
+		<div class="expanded">Rumble feature for gamaepads</div>
 	</details>
 	<details id="game_mode_explanation">
 		<summary>
@@ -208,10 +218,10 @@ a.button {
 	<!-- } -->
 	<!-- </style> -->
 	<script>
-		window.onbeforeunload = e => {
-			e.preventDefault()
-			return e.returnValue="NOOO!"
-		}
+		//window.onbeforeunload = e => {
+		//	e.preventDefault()
+		//	//return e.returnValue="NOOO!" // custom messages now deactivated
+		//}
 
 
 		let GAMETABLE = {
@@ -259,6 +269,14 @@ let GAMEMODE = GAMETABLE[game_mode];
 			localStorage.chain_moves = chain_moves
 		}
 
+		let rumble_activated = Boolean(localStorage?.rumble_activated ?? 0)
+		let rumble_activated_checkbox = document.querySelector('#rumble_activated_checkbox')
+		rumble_activated_checkbox.checked =rumble_activated
+		rumble_activated_checkbox.onchange = () => {
+			rumble_activated =rumble_activated_checkbox.checked
+			localStorage.rumble_activated = rumble_activated
+		}
+		
 		let vibration = Boolean(localStorage?.vibration ?? 0)
 		let vibration_checkbox = document.querySelector('#vibration_checkbox')
 		vibration_checkbox.checked =vibration
@@ -296,7 +314,7 @@ let GAMEMODE = GAMETABLE[game_mode];
 	</p>
 	<strong class="important">How to play:</strong> Use your 
 
-	<strong>a gamepad (NEW!)</strong>,
+	<strong>a gamepad (NEW!, not for Firefox?)</strong>,
 	<strong>arrow keys</strong>, 
 	<strong>WASD</strong>, <strong>HJKL</strong>
 	or swipe to move the tiles. 

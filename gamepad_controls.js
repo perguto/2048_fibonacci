@@ -49,6 +49,11 @@ let rumble_settings =
 		strongMagnitude: 0.1,
 	}
 
+function rumble(gamepad){
+	if (rumble_activated){
+		gamepad.vibrationActuator.playEffect("dual-rumble",rumble_settings)
+	}
+}
 
 //let lastPressed =[]
 let gamepads = navigator.getGamepads()
@@ -67,7 +72,7 @@ function handleGamepads(){
 					let e = new Event('press')
 					// debugger
 					// gamepads[i].vibrationActuator.playEffect("dual-rumble",{duration:200,startDelay:0,strongMagnitude:1,weakMagnitude:1})
-					gamepads[0].vibrationActuator.playEffect("dual-rumble",rumble_settings)
+					rumble(gamepads[i])
 					e.button=j
 					document.dispatchEvent(e)
 				}
@@ -81,7 +86,7 @@ function handleGamepads(){
 					e.axis=j
 					e.sign= Math.sign(gamepads[i].axes[j])
 					document.dispatchEvent(e)
-					gamepads[i].vibrationActuator.playEffect('dual-rumble', rumble_settings);
+					rumble(gamepads[i])
 				} else 
 					if(Math.abs(gamepads[i]?.axes[j])<resetzone && !(axis_active[i][j]??false)){
 						axis_active[i][j]=true
