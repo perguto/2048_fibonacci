@@ -186,7 +186,7 @@ GameManager.prototype.move = function (direction) {
 	// 0: up, 1: right, 2: down, 3: left
 
 	if(vibration){
-		navigator?.vibrate(10)
+		navigator?.vibrate(50)
 	}
 
 	var self = this;
