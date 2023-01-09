@@ -181,9 +181,15 @@ GameManager.prototype.moveTile = function (tile, cell) {
 	tile.updatePosition(cell);
 };
 
+vibration = Boolean(navigator.vibrate)
 // Move tiles on the grid in the specified direction
 GameManager.prototype.move = function (direction) {
 	// 0: up, 1: right, 2: down, 3: left
+
+	if(vibration){
+		navigator.vibrate(100)
+	}
+
 	var self = this;
 
 	if (this.isGameTerminated()) return; // Don't do anything if the game's over

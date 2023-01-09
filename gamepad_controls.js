@@ -36,8 +36,8 @@ window.addEventListener("gamepaddisconnected", (e) => {
 
 setInterval(handleGamepads,10)
 
-let deadzone = 0.6
-let resetzone = 0.2
+let stick_threshold = 0.6
+let resetzone = 0.6
 let gamepad_activated = [true,true,true,true]
 let axis_active =[[],[],[],[]]
 
@@ -74,7 +74,7 @@ function handleGamepads(){
 			}
 			for(let j=0;j<gamepads[i]?.axes.length;j++){
 				// debugger
-				if(Math.abs(gamepads[i]?.axes[j])>deadzone && (axis_active[i][j]??false)){
+				if(Math.abs(gamepads[i]?.axes[j])>stick_threshold && (axis_active[i][j]??false)){
 					// debugger
 					axis_active[i][j]=false
 					let e= new Event('axis_tilt')
@@ -83,7 +83,7 @@ function handleGamepads(){
 					document.dispatchEvent(e)
 					gamepads[i].vibrationActuator.playEffect('dual-rumble', rumble_settings);
 				} else 
-					if(Math.abs(gamepads[i]?.axes[j])<deadzone && !(axis_active[i][j]??false)){
+					if(Math.abs(gamepads[i]?.axes[j])<resetzone && !(axis_active[i][j]??false)){
 						axis_active[i][j]=true
 					}
 			}
