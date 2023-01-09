@@ -148,6 +148,8 @@
 			<br>
 			<strong>Custom Sequence:</strong>Change the value of the array
 <code>custom_sequence</code> in the devtools console (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> +<kbd>J</kbd>)
+</div>
+</details>
 	<style>
 input[type="range"] {
 	accent-color: #3d81fb;
@@ -270,7 +272,10 @@ let GAMEMODE = GAMETABLE[game_mode];
 		}
 	</script>
 	</p>
-	<strong class="important">How to play:</strong> Use your <strong>arrow keys</strong>, 
+	<strong class="important">How to play:</strong> Use your 
+
+	<strong>a gamepad (NEW!)</strong>,
+	<strong>arrow keys</strong>, 
 	<strong>WASD</strong>, <strong>HJKL</strong>
 	or swipe to move the tiles. 
 	<!-- When two tiles with the same number touch, they <strong>merge into one!</strong> -->
@@ -294,6 +299,11 @@ let GAMEMODE = GAMETABLE[game_mode];
 		<script src="js/bind_polyfill.js"></script>
 		<script src="js/classlist_polyfill.js"></script>
 		<script src="js/animframe_polyfill.js"></script>
+
+		<!-- BS 3rd party lib -->
+		<!-- <script src="gamepad.js"></script> -->
+		<script src="gamepad_controls.js"></script>
+
 		<script src="js/keyboard_input_manager.js"></script>
 		<script src="js/html_actuator.js"></script>
 		<script src="js/grid.js"></script>

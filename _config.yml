@@ -1,1 +1,2 @@
 exclude: ['tribonacci.md']
+  # have to ignore pandoc markdown with latex because jekyll misparses latex formulas
