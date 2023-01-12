@@ -31,7 +31,9 @@
 <body>
   <div class="container">
     <div class="heading">
-      <h1 class="title">2584 - Fibonacci's 2048</h1>
+      <h1 class="title">2584</h1>
+      <!-- <h1 class="title">2584 - Fibonacci's 2048</h1> -->
+		<!-- <h1 class="title">2584</h1><br><h3>Fibonacci's 2048</h3> -->
       <div class="scores-container">
         <div class="score-container">0</div>
         <div class="best-container">0</div>
@@ -41,7 +43,7 @@
     <div class="above-game">
       <p class="game-intro">Join the numbers and get to the <strong>2584 tile!</strong></p>
 	  <!-- <input type="button" value="Reload &amp; Update App" onclick="javascript:location.reload()"> -->
-	  <a class="button" type="button" onclick="javascript:location.reload()">
+	  <a class="button reload-button" type="button" onclick="javascript:location.reload()">
 		  <span style="
     line-height: 1em;
     writing-mode: tb-rl;
@@ -103,38 +105,44 @@
 			line-height: 2.5em /*max value compatible with input height*/;
 			">
 			<span style="">
+				<span class="swipe_sensitivity_text">
 				Swipe sensitivity: 
+				</span>
 				<span id="swipe_sensitivity_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
 			</span>
 			<input id="sensitivity_slider" type="range" min="0" max="1" value="0.3" step="0.01" style="margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;">
 		</summary>
-		<div class="expanded">Number of pixels to swipe to move. Lower value = more sensitive</div>
+		<div class="expanded swipe_sensitivity_explanation_text">Number of pixels to swipe to move. Lower value = more sensitive</div>
 	</details>
 
 	<details id="chain_moves_explanation">
 		<summary style="/*line-height: 2.5em*/">
-			<span style="">
+			<span class="chain_moves_text">
 				Multiple moves per swipe: 
 			</span>
 			<input id="chain_moves_checkbox" type="checkbox" style="/* margin: 4px;margin-left: .5em; margin-bottom: .5em; vertical-align: middle;*/">
 		</summary>
-		<div class="expanded">Allow multiple moves with one swipe</div>
+		<div class="expanded chain_moves_explanation_text">
+		<!-- Allow multiple moves with one swipe -->
+		Chain moves together without releasing your finger.
+<!-- Ohne Absetzen mehrere Moves hintereinander ausführen -->
+		</div>
 	</details>
 	<details id="vibration_explanation">
 		<summary>
-			<span>
+			<span class="vibration_text">
 				Vibration: 
 			</span>
 			<input id="vibration_checkbox" type="checkbox">
 		</summary>
-		<div class="expanded">Vibration for smartphone/tablet</div>
+		<div class="expanded vibration_explanation_text">Vibration for smartphone/tablet</div>
 	</details>
 	<details id="rumble_activated_explanation">
-		<summary>
+		<summary class="rumble_activated_text">
 			<span>Rumble: </span>
 			<input id="rumble_activated_checkbox" type="checkbox">
 		</summary>
-		<div class="expanded">Rumble feature for gamaepads</div>
+		<div class="expanded rumble_activated_explanation_text">Rumble feature for gamaepads</div>
 	</details>
 	<details id="game_mode_explanation">
 		<summary>
@@ -223,6 +231,7 @@ a.button {
 		//	//return e.returnValue="NOOO!" // custom messages now deactivated
 		//}
 
+		try{localStorage}catch(e){let localStorage={};}
 
 		let GAMETABLE = {
 			'normal':0,
@@ -351,5 +360,6 @@ let GAMEMODE = GAMETABLE[game_mode];
 		<script src="js/local_storage_manager.js"></script>
 		<script src="js/game_manager.js"></script>
 		<script src="js/application.js"></script>
+		<script src="localization.js"></script>
 </body>
 </html>
