@@ -24,7 +24,7 @@ function LocalStorageManager() {
 
   var supported = this.localStorageSupported();
   this.storage = supported ? window.localStorage : window.fakeStorage;
-	globalThis.storage = this.storage
+	window.storage = this.storage
 }
 
 LocalStorageManager.prototype.localStorageSupported = function () {
