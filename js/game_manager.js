@@ -1,3 +1,9 @@
+let game_mode='fibonacci'
+let chain_moves = 0
+
+let swipe_sensitivity = 30
+
+
 var phi=(5**.5+1)/2;
 let max = Math.max
 let min = Math.min
@@ -6,9 +12,19 @@ let ordered_ratio_between = (a,b,m,M) => unordered_ratio_between(Math.min(a,b),M
 var fib = n => Math.round(phi**n/5**.5);
 // let tribcache=Array(100)
 let tribcache=[1,1,1]
-function trib(){}
-trib = n => n<3?1n:tribcache[n]??(tribcache[n]=trib(n-1)+trib(n-3))
-//0 : normal, 1 : fibonacci
+function trib(n){
+	return n<3?1:tribcache[n]??(tribcache[n]=trib(n-1)+trib(n-3))
+}
+
+let titles = {
+	'fibonacci' : 2584,
+	'normal' : 2048,
+	'tribonacci' : 2745,
+}
+
+function update_title() {
+	document.querySelector('.title').innerText=titles[game_mode]??2584
+}
 update_title()
 //var mergeable = (a,b) => 
 //	(GAMEMODE == 0)?
@@ -17,8 +33,8 @@ update_title()
 ////	(a==b&&b==2)||a!=b&&a<=2*b&&b<=2*a; //fibonacci like
 //	(a==b&&b==1)||a!=b&&a<=2*b&&b<=2*a; //proper fibonacci with modified 1 and 2 start tiles
 let custom_sequence = 
-[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912]
-	// [2**i for i in range(30)]
+	[1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912]
+// [2**i for i in range(30)]
 var mergeable = (a,b) => 
 
 {
@@ -48,7 +64,7 @@ var mergeable = (a,b) =>
 		case 'powers_of_5':
 			n=5
 			// return (a + b <= 5) || (a%5==0 && b%5 == 0 && mergeable(a/5,b/5))
-			
+
 	}
 	return (a + b <= n) || (a%n==0 && b%n == 0 && mergeable(a/n,b/n))
 }
