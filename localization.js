@@ -13,7 +13,7 @@ ja :
 		".chain_moves_text":'一スワイプで複数の動き',
 		".chain_moves_explanation_text":'指を離さず連続でボードを動かせる',
 		".vibration_text":'バイブ',
-		".vibration_explanation_text":'スマホ・タブレットの振動機能',
+		".vibration_explanation_text":'スマホ・タブレットの振動機能。iPhone・Padは対応不可。',
 		".rumble_activated_text":'コントローラー振動',
 		".rumble_activated_explanation_text":'コントローラーの振動機能',
 		".game_mode_text":'ゲームモード',
