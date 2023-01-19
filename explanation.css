@@ -1,0 +1,5 @@
+.grid {
+	display:inline-flex;
+	width: 90%;
+	/* grid-template-columns: 1fr max-content; */
+}
