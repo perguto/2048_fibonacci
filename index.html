@@ -146,7 +146,7 @@
 					</span>
 					<input id="vibration_checkbox" type="checkbox">
 				</summary>
-				<div class="expanded vibration_explanation_text">Vibration for smartphone/tablet</div>
+				<div class="expanded vibration_explanation_text">Vibration for smartphone/tablet (doesn't work on iPhone/iPad)</div>
 			</details>
 			<details id="rumble_activated_explanation">
 				<summary class="rumble_activated_text">
@@ -189,6 +189,18 @@
 					<strong>Custom Sequence:</strong>Change the value of the array
 					<code>custom_sequence</code> in the devtools console (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> +<kbd>J</kbd>)
 				</div>
+			</details>
+			<details id="language_explanation">
+				<summary>
+					<span class="language_text">
+						Game mode:
+					</span>
+					<input type="radio" id="language_normal" name="game_mode" value="language_en" onclick="setLanguage('en')"><label>English</label>
+
+					<input type="radio" id="language_fibonacci" name="game_mode" value="language_ja" onclick="setLanguage('ja')" checked><label>日本語
+					</label>
+				</summary>
+				<div class="expanded language_explanation_text"></div>
 			</details>
 			<a class="button" id="notifications" type="button" >Get Notifications</a>
 			<style>
