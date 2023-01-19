@@ -11,9 +11,16 @@
 	// }
 	// let GAMEMODE = GAMETABLE[game_mode];
 
-let storage = window.storage ?? localStorage
+// let storage = window.storage ?? localStorage
+let storage
+try{
+	storage=localStorage
+}catch(e){
+	storage={};
+}
 
-	game_mode ??= storage.game_mode // ??'fibonacci'
+	// game_mode ??= storage.game_mode // ??'fibonacci'
+	game_mode = storage.game_mode  ??'fibonacci'
 	document.querySelector('input[type="radio"][name="game_mode"][value="'+game_mode+'"]').checked=true
 
 	let game_mode_buttons = document.querySelectorAll('input[type="radio"][name="game_mode"]')
@@ -35,8 +42,11 @@ let storage = window.storage ?? localStorage
 
 	}
 
-	chain_moves ??= Boolean(storage?.chain_moves // ?? 0
+	// chain_moves ??= Boolean(storage?.chain_moves // ?? 0
+	// )
+	chain_moves = Boolean(storage?.chain_moves  ?? 0
 	)
+
 	let chain_moves_checkbox = document.querySelector('#chain_moves_checkbox')
 	chain_moves_checkbox.checked =chain_moves
 	chain_moves_checkbox.onchange = () => {
