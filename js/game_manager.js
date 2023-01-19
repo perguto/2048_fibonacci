@@ -201,7 +201,8 @@ GameManager.prototype.moveTile = function (tile, cell) {
 GameManager.prototype.move = function (direction) {
 	// 0: up, 1: right, 2: down, 3: left
 
-	if(vibration){
+
+	if(vibration&&navigator?.vibrate){
 		navigator?.vibrate(50)
 	}
 
