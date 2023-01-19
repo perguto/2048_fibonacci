@@ -16,6 +16,9 @@ let storage
 try{
 	storage=localStorage
 }catch(e){
+	if(!(e.name==='SecurityError')){
+		throw e;
+	}
 	storage={};
 }
 
