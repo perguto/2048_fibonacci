@@ -11,7 +11,7 @@
 	// }
 	// let GAMEMODE = GAMETABLE[game_mode];
 
-let storage = window.storage
+let storage = window.storage ?? localStorage
 
 	game_mode ??= storage.game_mode // ??'fibonacci'
 	document.querySelector('input[type="radio"][name="game_mode"][value="'+game_mode+'"]').checked=true
