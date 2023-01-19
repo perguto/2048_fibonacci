@@ -69,6 +69,7 @@ function handleGamepads(){
 					!(last_gamepads[i]?.buttons[j].touched??false) 
 				){
 					// debugger
+					console.log('button '+j+' pressed on controller '+i)
 					let e = new Event('press')
 					// debugger
 					// gamepads[i].vibrationActuator.playEffect("dual-rumble",{duration:200,startDelay:0,strongMagnitude:1,weakMagnitude:1})
