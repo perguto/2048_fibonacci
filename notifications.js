@@ -18,5 +18,8 @@ function registerNotification() {
     icon: notifImg,
   };
   new Notification(notifTitle);
-  setTimeout(registerNotification, 3*60**2*1000);
+  setTimeout(registerNotification, 
+	  // 3*60**2*1000 // every 3 hours
+	  1000
+  );
 }
