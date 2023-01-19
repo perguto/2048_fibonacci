@@ -24,7 +24,10 @@ try{
 
 // game_mode ??= storage.game_mode // ??'fibonacci'
 game_mode = storage.game_mode  ??'fibonacci'
-document.querySelector('input[type="radio"][name="game_mode"][value="'+game_mode+'"]').checked=true
+let r=document.querySelector('input[type="radio"][name="game_mode"][value="'+game_mode+'"]')
+if(r){
+r.checked=true
+}
 
 let game_mode_buttons = document.querySelectorAll('input[type="radio"][name="game_mode"]')
 function update_game_mode() {
