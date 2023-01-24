@@ -76,6 +76,13 @@ vibration_checkbox.onchange = () => {
 	storage.vibration = vibration
 }
 
+
+tilt_angle_vertical = +(storage?.tilt_angle_vertical ?? tilt_angle_vertical)
+tilt_angle_horizontal = +(storage?.tilt_angle_horizontal ?? tilt_angle_horizontal)
+let tilt_slider = document.querySelector('#tilt_slider')
+let tilt_value_display = document.querySelector('#tilt_value_display')
+//TODO!!!!!!!!!!!!!!!!!
+
 let default_sens = 30
 let sensitivity_slider = document.querySelector('#sensitivity_slider')
 let swipe_sensitivity_value_display = document.querySelector('#swipe_sensitivity_value_display')
