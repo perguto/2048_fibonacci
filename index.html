@@ -100,6 +100,31 @@
 			<p class="game-explanation">
 			<p>
 
+			<details id="tilt_explanation">
+				<summary style="
+								/*display: flex;*/ /* somehow hides expand button */ /*justify-content: space-evenly;*/ /*doesn't work if display not flex etc. */ 
+								/*line-height: 2.5em;*/
+								/*max value compatible with input height*/
+								">
+					<span class="grid">
+					<span style="">
+						<span class="tilt_text">
+							Tilt angle:
+						</span>
+						<span id="tilt_value_display" style="font-family: monospace; white-space: pre;">30.0</span>
+					</span>
+					<input id="tilt_slider" type="range" min="0" max="180" value="30" step="1" style="
+							   margin: 4px;
+							   margin-left: .5em;
+							   margin-bottom: .5em;
+							   vertical-align: middle;
+							   /*width: 50%;*/
+							   flex-grow:1;
+							   ">
+					</span>
+				</summary>
+				<div class="expanded tilt_explanation_text">Angle in degrees until move registers</div>
+			</details>
 			<details id="swipe_sensitivity_explanation">
 				<summary style="
 								/*display: flex;*/ /* somehow hides expand button */ /*justify-content: space-evenly;*/ /*doesn't work if display not flex etc. */ 
