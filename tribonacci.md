@@ -9,6 +9,9 @@ css: [
 h1.title {
 float: initial
 }
+body {
+margin:1 em
+}
 </style>
 In its full glory:
 
