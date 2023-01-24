@@ -110,7 +110,8 @@ KeyboardInputManager.prototype.listen = function () {
 		}
 	})
 
-	let tilt_angle=30
+	let tilt_angle_horizontal=30
+	let tilt_angle_vertical=30
 	let tilt_ready=true;
 
 	globalThis.addEventListener("deviceorientation", event => {
@@ -119,16 +120,16 @@ KeyboardInputManager.prototype.listen = function () {
 		let x =event.gamma;
 		let y = event.beta;
 		let mapped
-		if(x>tilt_angle){
+		if(x>tilt_angle_horizontal){
 			mapped=1//right
 		}else
-			if(x<-tilt_angle){
+			if(x<-tilt_angle_horizontal){
 				mapped=3//left
 			}else
-			if(y>tilt_angle){
+			if(y>tilt_angle_vertical){
 				mapped=0//up
 			}else
-			if(y<-tilt_angle){
+			if(y<-tilt_angle_vertical){
 				mapped=2
 			}else{
 				tilt_ready=true;
