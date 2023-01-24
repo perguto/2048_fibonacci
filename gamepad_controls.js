@@ -50,8 +50,12 @@ let rumble_settings =
 	}
 
 function rumble(gamepad){
-	if (rumble_activated){
+	if (gamepad?.vibrationActuator && rumble_activated){
+		try{
 		gamepad.vibrationActuator.playEffect("dual-rumble",rumble_settings)
+		}catch(e){
+			console.error(e)
+		}
 	}
 }
 
