@@ -10,7 +10,8 @@ h1.title {
 float: initial
 }
 body {
-margin:1 em
+margin-left:initial!important;
+margin-right:initial!important
 }
 </style>
 In its full glory:
