@@ -7,17 +7,17 @@ css: [
 ]
 ---
 <style>
-/*
+
 h1.title {
 float: initial
 }
-*/
-/*
+
+
 body {
-margin-left:initial!important;
-margin-right:initial!important
+margin-left:1em!important;
+margin-right:1em!important
 }
-*/
+
 </style>
 In its full glory:
 
