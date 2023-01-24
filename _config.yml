@@ -1,5 +1,5 @@
 exclude: ['tribonacci.md']
-include: ['tribonacci.md']
+include: ['tribonacci.md.html']
 
 
   # have to ignore pandoc markdown with latex because jekyll misparses latex formulas
